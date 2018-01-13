@@ -1,0 +1,144 @@
+\documentclass{article}
+
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+
+\author{Matthew Coyle / Valentin Bayart}
+\title{\textbf{Th\'eorie des Langages}}
+
+\begin{document}
+\maketitle
+
+\section{\textbf{Introduction et concepts de base}}
+\section*{\textbf{- Introduction}}
+\textbf{Les langages formels} ont 	\'et\'e \'etudi\'es par :\\
+- \textbf{les informaticiens} : langages de programmation (Avec une syntaxe (La d\'efinir, la v\'erifier) permettant de traduire ce m\^eme langage\\
+- \textbf{les linguistes} : langues naturelles\\
+\\
+\textbf{Exemples de Langages :} \\
+- Entiers naturels (suite de chiffres parmi 0...9).\\
+- Entiers naturels impairs (m\^eme repr\'esentation).\\
+- Les mots français (du dictionnaire).\\
+- Les identificateurs C++.\\
+- Les phrases en français.\\
+- Les programmes (syntaxiquement corrects) \'ecrits en C++.\\
+\\
+Tous ces exemples sont des ensembles ou des sous-ensembles d'un autre ensemble (lettres / alphabet / dictionnaire).\\
+\\
+\textbf{Points communs des langages formels :}\\
+- Chaque langages est un ensemble d'\'el\'ements appel\'es \textbf{mots} ou "\textbf{cha\^\i nes}".\\
+- Chaque cha\^\i ne est une suite de \textbf{symboles} pris parmi un ensemble fini de symboles.\\
+- Chaque cha\^\i ne est de longueur finie (m\^eme s’il n’y a pas de limite à cette longueur).\\
+\\
+On \'etudie des mod\`eles pour repr\'esenter de mani\`ere finie des langages :\\
+- automates finis.\\
+- expressions reguli\`eres.\\
+- grammaires formelles.\\
+- ...\\
+\\
+\textbf{Application pratiques:}\\
+- Recherche de "\textbf{motifs}" dans des fichiers.\\
+- Traitement de texte.\\
+- Mod\'elisation de circuits.\\
+- de machines \`a \'etats.\\
+- Compilation de langages de programmation.\\
+- ...\\
+\section*{\textbf{- Concepts de Base}}
+\textbf{- Alphabets :}\\
+Un \textbf{alphabet} est un ensemble fini, non vide, de symboles.\\
+On le note g\'en\'eralement $\sum$.\\
+\\
+\textbf{Exemples d'alphabets :}\\
+\textcolor[rgb]{1,0,0}{$\sum_{entiers}$ = \{0,1,2,3,4,5,6,7,8,9\}}\\
+\textcolor[rgb]{1,0,0}{$\sum_{mots}$ = \{a,b,c,...,z,',-\}}\\
+\textcolor[rgb]{1,0,0}{$\sum_{ident}$ = \{a,...,z,A,...,Z,0,...,9,\_\}}\\
+\textcolor[rgb]{1,0,0}{$\sum_{prog}$ = \{int, float, bool, while, do, for, ..., \textless, \textless=, \textgreater, \textgreater=, =, !=, +, -, /, *, ;, ..., 0, 1, …, 25, 26, 27,..., 12.56, ..., a, b, toto, compteur, Tab, ...\}}\\
+\\
+\textbf{- Cha\^\i nes}\\
+Un \textbf{mot} ou une \textbf{cha\^\i ne} \textcolor[rgb]{1,0,0}{$\omega$} (omega) form\'e(e) sur un alphabet est une suite finie $s_1 s_2 ... s_n$ de symboles de cet alphabet\\
+\textbf{La cha\^\i ne vide}, not\'e \textcolor[rgb]{1,0,0}{$\varepsilon$} (epsilon), est une cha\^\i ne ne contenant aucun symbole\\
+La \textbf{longueur} d’une cha\^\i ne $\textcolor[rgb]{1,0,0}{\omega}$, not\'ee  $\textcolor[rgb]{1,0,0}{|\omega|}$, est le nombre de symboles composant la cha\^\i ne \textcolor[rgb]{1,0,0}{$\omega$}\\
+\\
+\textbf{- Op\'erations sur les cha\^\i nes}
+La concatenation de deux cha\^\i nes \textcolor[rgb]{1,0,0}{u} et \textcolor[rgb]{1,0,0}{v}, not\'ee \textcolor[rgb]{1,0,0}{u.v} ou \textcolor[rgb]{1,0,0}{uv} est la cha\^\i ne obtenue en \'ecrivant les symboles de \textcolor[rgb]{1,0,0}{u} suivis de ceux de \textcolor[rgb]{1,0,0}{v}.\\
+si \textcolor[rgb]{1,0,0}{$u=a_1 a_2 ... a_n$} et \textcolor[rgb]{1,0,0}{$v=b_1 b_2 ... b_p$}\\
+alors \textcolor[rgb]{1,0,0}{$uv=a_1 a_2 ... a_n b_1 b_2 ... b_p$}\\
+\\
+\textbf{Propri\'et\'es : }\\
+- \textcolor[rgb]{1,0,0}{$|$u.v$|$ = $|$u$|$ + $|$v$|$}\\
+- Associativité : \textcolor[rgb]{1,0,0}{$($u.v$)$.w = u.$($v.w$)$}\\
+- $\varepsilon$ est élément neutre : \textcolor[rgb]{1,0,0}{u.$\varepsilon$ = $\varepsilon$.u = u}\\
+\\
+\textbf{\textcolor[rgb]{0.4,0.4,0.4}{. Puissance d'une cha\^\i ne }}\textcolor[rgb]{1,0,0}{$\omega$}
+– $\textcolor[rgb]{1,0,0}{\omega^{k}}$ est la cha\^\i ne formée par la concaténation de k occurrences de $\omega$\\
+$\textcolor[rgb]{1,0,0}{\omega^{k}} = \underbrace{\textcolor[rgb]{1,0,0}{\omega\omega\omega} \ldots \textcolor[rgb]{1,0,0}{\omega\omega}}_\textrm{\textcolor[rgb]{1,0,0}{k} fois}$\\
+– $\textcolor[rgb]{1,0,0}{\omega^{0}} = \textcolor[rgb]{1,0,0}{\varepsilon}$\\
+\\
+Un \textbf{prefixe} d'une cha\^\i ne $\omega$ ? est une suite, \'eventuellement vide, de symboles débutant $\omega$.\\
+Un \textbf{suffixe} de $\omega$ est une suite de symboles terminant $\omega$.\\
+$\textcolor[rgb]{1,0,0}{\forall x,y} \mid \textcolor[rgb]{1,0,0}{\omega=x.y}$, \textcolor[rgb]{1,0,0}{x} est un prefixe de $\textcolor[rgb]{1,0,0}{\omega}$, \textcolor[rgb]{1,0,0}{y} un suffixe.\\
+Une \textbf{sous-chaine} d'une cha\^\i ne $\omega$ est une suite de symboles apparaissant cons\'ecutivement dans $\omega$.\\
+\\
+\textbf{Notation : }$\textcolor[rgb]{1,0,0}{|\omega|_{x}}$ est le nombre d'occurences de la cha\^\i ne x dans la cha\^\i ne $\omega$.\\
+\\
+\textbf{- Langage :}\\
+Un langage est un ensemble de cha\^\i ne.\\
+\\
+\textbf{Exemples de langages:}\\
+\textcolor[rgb]{1,0,0}{\{toto,titi,tata\}}\\
+\textcolor[rgb]{1,0,0}{\{1,11,101,1001\}}\\
+$\textcolor[rgb]{1,0,0}{\{1^{n} \mid n \textgreater= 0\} = \{e,1,11,111,1111,11111,...\}}$ \textcolor[rgb]{1,0,0}{c'est un langage infini (nombre infini de chaînes)dont chaque cha\^\i ne est de longueur finie}\\
+\textcolor[rgb]{1,0,0}{Nombres binaires impaires:} \textcolor[rgb]{1,0,0}{\{1,11,101,111,1001,1011,...\}}\\
+\textcolor[rgb]{1,0,0}{Nombres binaires premiers:} \textcolor[rgb]{1,0,0}{\{1,10,11,101,111,1011,...\}}\\
+\\
+\textbf{le Langage vide}, not\'e $\textcolor[rgb]{1,0,0}{\o}$, ne contient aucune cha\^\i ne (ensemble vide).\\
+Attention : $\textcolor[rgb]{1,0,0}{\o \ne \{\varepsilon\}}$\\
+Le \textbf{langage plein}, not\'e $\textcolor[rgb]{1,0,0}{\sum^*}$, contient toutes les cha\^\i nes que l'on peut former sur l'alphabet $\sum$\\
+\textbf{Remarque :} $\textcolor[rgb]{1,0,0}{\sum^* = \sum^+ \cup \{\varepsilon\}}$\\
+\\
+\textbf{- Op\'erations sur les langages :}
+\\
+l'\textbf{Union} de deux langages \textcolor[rgb]{1,0,0}{A} et \textcolor[rgb]{1,0,0}{B} est le langage, note $\textcolor[rgb]{1,0,0}{A \cup B}$, compos\'e de toutes les cha\^\i nes qui apparaissent dans l'un au moins de langages \textcolor[rgb]{1,0,0}{A} ou \textcolor[rgb]{1,0,0}{B}.\\
+$\textcolor[rgb]{1,0,0}{A \cup B = \{\omega\mid\omega\in A \ ou \ \omega \in B\}}$\\
+\\
+\textbf{Propri\'et\'es :}\\
+- Commutativit\'e : $\textcolor[rgb]{1,0,0}{A \cup B = B \cup A}$\\
+- Associativit\'e : $\textcolor[rgb]{1,0,0}{(A \cup B) \cup C = A \cup (B \cup C)}$\\
+- \textcolor[rgb]{1,0,0}{\o} est \'el\'ement neutre : $\textcolor[rgb]{1,0,0}{A \cup \o = \o \cup A = A}$\\
+- Idempotence : $\textcolor[rgb]{1,0,0}{A \cup A = A}$\\
+\\
+La \textbf{concat\'enation} de deux langages \textcolor[rgb]{1,0,0}{A} et \textcolor[rgb]{1,0,0}{B} est le langage, note \textcolor[rgb]{1,0,0}{A.B} ou \textcolor[rgb]{1,0,0}{AB}, compos\'e de toutes les cha\^\i nes form\'ees par une cha\^\i ne de \textcolor[rgb]{1,0,0}{A} concat\'en\'ee \`a une cha\^\i ne de \textcolor[rgb]{1,0,0}{B}.\\
+$\textcolor[rgb]{1,0,0}{A.B = \{u.v \mid u \in A \ ou \ v \in B\}}$\\
+\\
+\textbf{Propri\'et\'es:}\\
+- Associativit\'e: \textcolor[rgb]{1,0,0}{(A.B).C = A.(B.C)}\\
+- $\textcolor[rgb]{1,0,0}{\{\varepsilon\}}$ est un \'el\'ement neutre: $\textcolor[rgb]{1,0,0}{A.\{\varepsilon\} = \{\varepsilon\}.A = A}$\\
+- $\textcolor[rgb]{1,0,0}{\o}$ est element absorbant : $\textcolor[rgb]{1,0,0}{A.\o = \o.A = \o}$\\
+\\
+\textbf{Distributivit\'e de la concat\'enation sur l'union:}\\
+- \`A gauche : $\textcolor[rgb]{1,0,0}{A.(B \cup C) = A.(B.C})$\\
+- \`A droite : $\textcolor[rgb]{1,0,0}{(B \cup C).A = B.A \cup C.A}$\\
+\\
+\textbf{\textcolor[rgb]{0.4,0.4,0.4}{. Puissance d'un langage}} \textcolor[rgb]{1,0,0}{A}\\
+$\textcolor[rgb]{1,0,0}{A^k}$ est le langage form\'e par la concat\'enation de \textcolor[rgb]{1,0,0}{k} occurrences de \textcolor[rgb]{1,0,0}{A}.\\
+$\textcolor[rgb]{1,0,0}{A^{}0 = \{\varepsilon\}}$\\
+$\textcolor[rgb]{1,0,0}{A^{1} = A}$\\
+$\textcolor[rgb]{1,0,0}{A^{n} =} \textcolor[rgb]{1,0,0}{\underbrace{A A A \ldots A A}_\textrm{{n} fois}}$\\
+$\textcolor[rgb]{1,0,0}{A^{k}}$ : Mots form\'es pas la concat\'enation de k mots de A\\ 
+\\
+\textbf{\textcolor[rgb]{0.4,0.4,0.4}{. \'Etoile de Kleene} (fermeture ou cloture par .)}\\
+- la \textbf{fermeture de Kleene} d'un langage \textcolor[rgb]{1,0,0}{A} est le langage, not\'e $\textcolor[rgb]{1,0,0}{A^*}$, d\'efini par : ${\textcolor[rgb]{1,0,0}{A^{*} = A^{0} \cup A^{1} \cup A^{2} \cup A^{3} ...}}$ soit\\
+$$\textcolor[rgb]{1,0,0}{{A^{*} = \bigcup_{i=0}^\infty A^{i} = A^0 \cup A^1 \cup A^2 \cup ...}}$$\\
+- la \textbf{fermeture positive} de \textcolor[rgb]{1,0,0}{A} est le langage, not\'e $\textcolor[rgb]{1,0,0}{A^+}$, d\'efini par : ${\textcolor[rgb]{1,0,0}{A^{+} = A^{1} \cup A^{2} \cup A^{3} \cup ...}}$ soit\\
+$$\textcolor[rgb]{1,0,0}{{A^{+} = \bigcup_{i=1}^\infty A^{i} = A^1 \cup A^2 \cup A^3 \cup ...}}$$\\
+"mots form\'es par la concat\'enation de 1 ou plusieurs mots de A"\\
+\textbf{Remarque : } $\textcolor[rgb]{1,0,0}{A^{*} = \{\varepsilon\} \cup A^{+}}$ (\\
+\\
+\textbf{Propri\'et\'es :} $\textcolor[rgb]{1,0,0}{A^{+} = A.A{^*}= A^{*}.A}$ (Posibilit\'e : $\textcolor[rgb]{1,0,0}{A^{+}=A^{*}})$\\
+
+ 
+
+\section{Modeles et Langages}
+- contextuels\\
+- langages recursivement enumerables\\
+\end{document}
